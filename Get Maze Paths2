@@ -1,0 +1,20 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static ArrayList<String> allPossiblePaths(int n, int m) {
+        // write code here
+    }
+    
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        int m = input.nextInt();
+        ArrayList<String> result = allPossiblePaths(n, m);
+        Collections.sort(result);
+        for (String str : result) {
+            System.out.println(str);
+        }
+
+    }
+}

@@ -1,0 +1,42 @@
+import java.util.*;
+
+class Main {
+    static String[] str={"0","ABC","DEF","GHI","JKL","MNO","PQRS","TU","VWX","YZ"};
+	static ArrayList<String>helper(int n,int[] keys,int i){
+
+		if(i==keys.length){
+			ArrayList<String> ans=new ArrayList<>();
+			ans.add("");
+			return ans;
+		}
+
+		ArrayList<String> small=helper(n,keys,i+1);
+
+		ArrayList<String> res=new ArrayList<>();
+
+		String chv=str[keys[i]];
+
+		for(int j=0;j<chv.length();j++){
+			for(String res1:small){
+				res.add(chv.charAt(j)+res1);
+			}
+		}
+		return res;
+	}
+    static ArrayList <String> OldPhone(int n, int[] keys){
+		//Write your code here
+
+		return helper(n,keys,0);
+    }
+	
+	public static void main(String[] args) throws Throwable {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] keys = new int[n];
+        for(int i=0;i<n;++i){
+            keys[i] = sc.nextInt();
+        }
+        ArrayList <String> ans=OldPhone(n,keys);
+        for(String i:ans) System.out.print(i+" ");
+    }
+}

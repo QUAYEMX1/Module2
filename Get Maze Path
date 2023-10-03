@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        int m = input.nextInt();
+        ArrayList<String> paths = getMazePaths(0, 0, n - 1, m - 1);
+        System.out.println(paths);
+    }
+
+	public static void helper(int sr,int sc,int dr,int dc,String str,ArrayList<String>ans){
+
+      if(sr>dr || sc>dc){
+		  return;
+	  }
+		if(sr==dr && sc==dc){
+			ans.add(str);
+			return;
+		}
+
+		helper(sr,sc+1,dr,dc,str+'h',ans);
+		helper(sr+1,sc,dr,dc,str+'v',ans);
+	}
+
+    public static ArrayList<String> getMazePaths(int sr, int sc, int dr, int dc) {
+       // your code here
+
+		ArrayList<String>ans=new ArrayList<>();
+
+		helper(sr,sc,dr,dc,"",ans);
+		return ans;	
+    }
+}
+
+
+                        
+                        
+                        
+                        
+                        
+                                
+
+                        
+                                

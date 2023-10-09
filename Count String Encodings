@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String str = sc.nextLine();
+    sc.close();
+    System.out.println(countEncodings(str));
+  }
+
+	public static int helper(String str,int i){
+
+		if(i==str.length()){
+			return 1;
+		}
+
+		int cnt=0;
+		if(str.charAt(i) != '0'){
+			cnt+= helper(str,i+1);
+		}
+
+		if((i<=str.length()-2) && 
+		   (str.charAt(i)=='1' || str.charAt(i)=='2' 
+								&& ((str.charAt(i+1)-'0')<=6))){
+			cnt+= helper(str,i+2);
+			}	
+		
+		return cnt;
+	}
+
+  public static int countEncodings(String str) {
+    // your code here
+
+	  return helper(str,0);
+  }
+}

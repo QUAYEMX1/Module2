@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class Main {
+	static void countAllPathHelper(int x, int y, int n, int m, int[][] visited,int cnt){
+
+if(x>n || y > m || x<1 || y <1)
+return;
+
+if(visited[x][y]== 1)
+return;
+
+if(x==n && y==m){
+cnt++;
+return;
+}
+
+visited[x][y]= 1;
+// horizontal
+countAllPathHelper(x+1,y,n,m,visited,cnt);
+countAllPathHelper(x-1,y,n,m,visited,cnt);
+//Vertical
+countAllPathHelper(x,y+1,n,m,visited,cnt);
+countAllPathHelper(x,y-1,n,m,visited,cnt);
+//Diagonal
+countAllPathHelper(x+1,y+1,n,m,visited,cnt);
+countAllPathHelper(x+1,y-1,n,m,visited,cnt);
+countAllPathHelper(x-1,y+1,n,m,visited,cnt);
+countAllPathHelper(x-1,y-1,n,m,visited,cnt);
+
+visited[x][y]= 0;
+
+return;
+	}
+
+static int countAllPath(int n, int m)
+{
+    boolean vis[][]=new boolean[n+1][m+1];
+    vis[1][1]=true;
+     int cnt=0;
+    countAllPathHelper(1,1,n,m,vis,cnt);
+
+	return cnt;
+}
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n= sc.nextInt();
+        int m= sc.nextInt();
+        System.out.println(countAllPath(n,m));
+    }
+}
